@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const body_parser_1 = __importDefault(require("body-parser"));
-const http_1 = __importDefault(require("http"));
 const compression_1 = __importDefault(require("compression"));
 // import cookieParser from 'cookie-parser';
 const cors_1 = __importDefault(require("cors"));
@@ -27,9 +26,13 @@ const corsOptions = {
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use((0, compression_1.default)());
-const server = http_1.default.createServer(app);
-server.listen(3001, () => {
-    console.log(`Server running on http://localhost:3001/`);
+// const server = http.createServer(app);
+const PORT = process.env.PORT;
+// server.listen(3001, () => {
+//     console.log(`Server running on http://localhost:3001/`)
+// });
+app.listen(PORT, () => {
+    console.log(`Server running on Port ${PORT}`);
 });
 const MONGO_URL = 'mongodb+srv://xalex:xalex@cluster0.aawauya.mongodb.net/?retryWrites=true&w=majority';
 mongoose_1.default.Promise = Promise;

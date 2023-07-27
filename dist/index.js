@@ -13,7 +13,7 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const app = (0, express_1.default)();
 app.use(body_parser_1.default.json());
-const allowedOrigins = ['http://localhost:3000', 'https://todo-list-six-sand.vercel.app'];
+const allowedOrigins = process.env.Whitelist;
 const corsOptions = {
     origin: (origin, callback) => {
         if (allowedOrigins.includes(origin)) {
@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on Port ` + PORT);
 });
-const MONGO_URL = 'mongodb+srv://xalex:xalex@cluster0.aawauya.mongodb.net/?retryWrites=true&w=majority';
+const MONGO_URL = process.env.Mongo_Connection_URL;
 mongoose_1.default.Promise = Promise;
 mongoose_1.default.connect(MONGO_URL);
 mongoose_1.default.connection.on('error', (error) => console.log(error));

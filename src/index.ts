@@ -12,7 +12,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-const allowedOrigins = ['http://localhost:3000', 'https://todo-list-six-sand.vercel.app'];
+const allowedOrigins = process.env.Whitelist;
 
 const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
@@ -45,7 +45,7 @@ app.listen(PORT,()=>{
     console.log(`Server running on Port ` + PORT)
 })
 
-const MONGO_URL = 'mongodb+srv://xalex:xalex@cluster0.aawauya.mongodb.net/?retryWrites=true&w=majority';
+const MONGO_URL = process.env.Mongo_Connection_URL;
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
